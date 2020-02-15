@@ -16,6 +16,6 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: ${{ matrix.python-version }}
-    - name: Install dependencies
+    - name: run script
       run: |
-        pip install tensorflow
+        python ../../test.py
