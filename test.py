@@ -24,11 +24,11 @@ ema = tf.train.ExponentialMovingAverage(MOVING_AVERAGE_DECAY, global_step)
 #ema.apply后的括号里是更新列表，每次运行sess.run(ema_op)时，对更新列表中的元素求滑动平均值。
 #在实际应用中会使用tf.trainable_variables()自动将所有待训练的参数汇总成列表
 #ema_op = ema.apply([])，apply当一个函数的参数存在于一个元组或者一个字典中时，用来间接的调用这个函数，并将元组或字典中的参数按照顺序传递给参数。
-ema_op = ema.apply(tf.trainable_variables())   #对所有待优化的参数求滑动平均
+ema_op = ema.apply(tf.trainables_variables())   #对所有待优化的参数求滑动平均
 
 #2. 查看不同迭代中变量取值的变化。
 with tf.Session() as sess:
-    init_op = tf.global_variable_initializer()
+    init_op = tf.global_variables_initializer()
     sess.run(init_op)
     #用ema.average(w1)获取w1滑动平均值（要运行多个节点，作为列表中的元素列出，卸载sess.run中）
     #打印出当前参数w1和w1滑动平均值
