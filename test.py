@@ -28,7 +28,7 @@ ema_op = ema.apply(tf.compat.v1.trainable_variables())   #对所有待优化的�
 
 #2. 查看不同迭代中变量取值的变化。
 with tf.compat.v1.Session() as sess:
-    init_op = tf.global_variables_initializer()
+    init_op = tf.compat.v1.global_variables_initializer()
     sess.run(init_op)
     #用ema.average(w1)获取w1滑动平均值（要运行多个节点，作为列表中的元素列出，卸载sess.run中）
     #打印出当前参数w1和w1滑动平均值
